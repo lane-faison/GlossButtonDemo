@@ -12,6 +12,8 @@
 		501F588A2229D5EA005ADC0F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 501F58882229D5EA005ADC0F /* Main.storyboard */; };
 		501F588C2229D5ED005ADC0F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 501F588B2229D5ED005ADC0F /* Assets.xcassets */; };
 		501F588F2229D5ED005ADC0F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 501F588D2229D5ED005ADC0F /* LaunchScreen.storyboard */; };
+		501F58972229D9FE005ADC0F /* CoolButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501F58962229D9FE005ADC0F /* CoolButton.swift */; };
+		501F58992229DEF1005ADC0F /* Drawing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501F58982229DEF1005ADC0F /* Drawing.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		501F588B2229D5ED005ADC0F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		501F588E2229D5ED005ADC0F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		501F58902229D5ED005ADC0F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		501F58962229D9FE005ADC0F /* CoolButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoolButton.swift; sourceTree = "<group>"; };
+		501F58982229DEF1005ADC0F /* Drawing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drawing.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +64,8 @@
 				501F588B2229D5ED005ADC0F /* Assets.xcassets */,
 				501F588D2229D5ED005ADC0F /* LaunchScreen.storyboard */,
 				501F58902229D5ED005ADC0F /* Info.plist */,
+				501F58962229D9FE005ADC0F /* CoolButton.swift */,
+				501F58982229DEF1005ADC0F /* Drawing.swift */,
 			);
 			path = GlossButtonDemo;
 			sourceTree = "<group>";
@@ -135,8 +141,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				501F58992229DEF1005ADC0F /* Drawing.swift in Sources */,
 				501F58872229D5EA005ADC0F /* ViewController.swift in Sources */,
 				501F58852229D5EA005ADC0F /* AppDelegate.swift in Sources */,
+				501F58972229D9FE005ADC0F /* CoolButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

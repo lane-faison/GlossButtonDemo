@@ -9,12 +9,22 @@
 import UIKit
 
 class ViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+    
+    @IBOutlet weak var coolButton: CoolButton!
+    
+    @IBAction func hueValueChanged(_ sender: Any) {
+        guard let slider = sender as? UISlider else { return }
+        coolButton.hue = CGFloat(slider.value)
     }
-
-
+    
+    @IBAction func saturationValueChanged(_ sender: Any) {
+        guard let slider = sender as? UISlider else { return }
+        coolButton.saturation = CGFloat(slider.value)
+    }
+    @IBAction func brightnessValueChanged(_ sender: Any) {
+        guard let slider = sender as? UISlider else { return }
+        coolButton.brightness = CGFloat(slider.value)
+    }
+    
 }
 
