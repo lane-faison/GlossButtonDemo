@@ -42,16 +42,20 @@ class CoolButton: UIButton {
     override func draw(_ rect: CGRect) {
         guard let context = UIGraphicsGetCurrentContext() else { return }
         
+        var actualBrightness = brightness
+        
+        if state == .highlighted {
+            actualBrightness -= 0.1
+        }
+        
         // 1
-        let outerColor = UIColor(hue: hue, saturation: saturation, brightness: brightness, alpha: 1.0)
+        let outerColor = UIColor(hue: hue, saturation: saturation, brightness: actualBrightness, alpha: 1.0)
         let shadowColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 0.5)
         
         // 2
         let outerMargin: CGFloat = 5.0
         let outerRect = rect.insetBy(dx: outerMargin, dy: outerMargin)
-        
-        // 3
-        let outerPath = createRoundedRectPath(for: outerRect, radius: 10.0)
+        let outerPath = createRoundedRectPath(for: outerRect, radius: 6.0)
         
         // 4
         if state != .highlighted {
@@ -64,8 +68,8 @@ class CoolButton: UIButton {
         }
         
         // 5
-        let outerTop = UIColor(hue: hue, saturation: saturation, brightness: brightness, alpha: 1.0)
-        let outerBottom = UIColor(hue: hue, saturation: saturation, brightness: brightness * 0.8, alpha: 1.0)
+        let outerTop = UIColor(hue: hue, saturation: saturation, brightness: actualBrightness, alpha: 1.0)
+        let outerBottom = UIColor(hue: hue, saturation: saturation, brightness: actualBrightness * 0.8, alpha: 1.0)
         
         // 6
         context.saveGState()
@@ -73,5 +77,49 @@ class CoolButton: UIButton {
         context.clip()
         drawGlossAndGradient(context: context, rect: outerRect, startColor: outerTop.cgColor, endColor: outerBottom.cgColor)
         context.restoreGState()
+        
+        // 7
+        let innerTop = UIColor(hue: hue, saturation: saturation, brightness: actualBrightness * 0.9, alpha: 1.0)
+        let innerBottom = UIColor(hue: hue, saturation: saturation, brightness: actualBrightness * 0.7, alpha: 1.0)
+        
+        // 8
+        let innerMargin: CGFloat = 3.0
+        let innerRect = outerRect.insetBy(dx: innerMargin, dy: innerMargin)
+        let innerPath = createRoundedRectPath(for: innerRect, radius: 6.0)
+        
+        // 9
+        context.saveGState()
+        context.addPath(innerPath)
+        context.clip()
+        drawGlossAndGradient(context: context, rect: innerRect, startColor: innerTop.cgColor, endColor: innerBottom.cgColor)
+        context.restoreGState()
+    }
+    
+    @objc func hesitateUpdate() {
+        setNeedsDisplay()
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        setNeedsDisplay()
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesMoved(touches, with: event)
+        setNeedsDisplay()
+    }
+    
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesCancelled(touches, with: event)
+        setNeedsDisplay()
+        
+        perform(#selector(hesitateUpdate), with: nil, afterDelay: 0.1)
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
+        setNeedsDisplay()
+        
+        perform(#selector(hesitateUpdate), with: nil, afterDelay: 0.1)
     }
 }
